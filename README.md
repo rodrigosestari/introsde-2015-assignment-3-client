@@ -16,9 +16,8 @@ Instead the client was implemented to call Heroku server.
 **Code:**
 
 
-* **introsde.assignment.soap.bean:** Classes to manage the mapping operation.
 * **introsde.assignment.soap.client** Client SOAP XML
-* **introsde.assignment.soap.ws** Implementation call WS
+* **introsde.assignment.soap.ws** Implementation call WS by wsimport
 * **resource** Contains the WSDL file
 
 

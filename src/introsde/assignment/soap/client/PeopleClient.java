@@ -3,25 +3,26 @@ package introsde.assignment.soap.client;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import introsde.assignment.soap.ws.MeasureBean;
+import introsde.assignment.soap.ws.MeasureProfile;
 import introsde.assignment.soap.ws.People;
 import introsde.assignment.soap.ws.PersonBean;
 
 public class PeopleClient {
 	private static FileWriter writer = null;
 	private static People people = null;
-	private static PersonBean[] peopleList = null;
-	private static MeasureBean[] measureList = null;
+	private static List<PersonBean> peopleList = null;
+	private static MeasureProfile measureList = null;
 	private static PersonBean personB, newPersonB = null;
 	private static MeasureBean newMeasureB = null;
-	private static String[] measureType = null;
+	private static List<String> measureType = null;
 	private static Long idperson;
 	private static String type;
 	private static MeasureBean newmb = null;
@@ -40,13 +41,11 @@ public class PeopleClient {
 		// 1st argument service URI, refer to wsdl document above
 		// 2nd argument is service name, refer to wsdl document above
 		QName qname = new QName("http://ws.soap.assignment.introsde/", "PeopleService");
-		
+
 		Service service = Service.create(url, qname);
 
-		people =  service.getPort(People.class);
+		people = service.getPort(People.class);
 
-		
-		
 		writer = new FileWriter("client-server-xml.log");
 		try {
 			try {
@@ -76,7 +75,7 @@ public class PeopleClient {
 				write("Request 6 : createPerson");
 				request6();
 				write("------------- \n");
-				
+
 				write("Request 7 : readMeasureTypes");
 				request7();
 				write("------------- \n");
@@ -112,7 +111,7 @@ public class PeopleClient {
 					write(pb.toString());
 				}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -120,12 +119,12 @@ public class PeopleClient {
 
 	public static void request2() {
 		try {
-			if ((peopleList != null) && (peopleList.length > 0)) {
-				Long id = peopleList[0].getId();
+			if ((peopleList != null) && (peopleList.size() > 0)) {
+				Long id = peopleList.get(0).getId();
 				personB = people.readPerson(id);
 				write(personB.toString());
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -141,7 +140,7 @@ public class PeopleClient {
 				personB = people.readPerson(id);
 				write(personB.toString());
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -157,15 +156,13 @@ public class PeopleClient {
 			newMeasureB.setMeasureType("height");
 			newMeasureB.setMeasureValue("99");
 			newMeasureB.setMeasureValueType("integer");
-			MeasureBean[] mbl = { newMeasureB };
-			newPersonB.setCurrentHealth(mbl);
-
+			newPersonB.getCurrentHealth().add(newMeasureB);
 			Long id = people.createPerson(newPersonB);
 
 			personB = people.readPerson(id);
 			write(personB.toString());
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -185,7 +182,7 @@ public class PeopleClient {
 				}
 			}
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -193,17 +190,18 @@ public class PeopleClient {
 
 	public static void request6() {
 		try {
-			if ((peopleList != null) && (peopleList.length > 0)) {
-				idperson = peopleList[0].getId();
+			if ((peopleList != null) && (peopleList.size() > 0)) {
+				idperson = peopleList.get(0).getId();
+
 				measureList = people.readPersonHistory(idperson, "weight");
 				if (measureList != null) {
-					for (MeasureBean mb : measureList) {
+					for (MeasureBean mb : measureList.getCurrentHealth()) {
 						write(mb.toString());
 					}
 				}
 				write(personB.toString());
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -218,7 +216,7 @@ public class PeopleClient {
 				}
 			}
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -226,18 +224,18 @@ public class PeopleClient {
 
 	public static void request8() {
 		try {
-			if ((measureList != null) && (measureList.length > 0)) {
-				Long mid = measureList[0].getMid();
-				type = measureList[0].getMeasureType();
+			if ((measureList != null) && (measureList.getCurrentHealth().size() > 0)) {
+				Long mid = measureList.getCurrentHealth().get(0).getMid();
+				type = measureList.getCurrentHealth().get(0).getMeasureType();
 
 				measureList = people.readPersonMeasure(idperson, type, mid);
 				if (measureList != null) {
-					for (MeasureBean mb : measureList) {
+					for (MeasureBean mb : measureList.getCurrentHealth()) {
 						write(mb.toString());
 					}
 				}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -253,12 +251,12 @@ public class PeopleClient {
 			Long mid = people.savePersonMeasure(idperson, newmb);
 			measureList = people.readPersonMeasure(idperson, "newType", mid);
 			if (measureList != null) {
-				for (MeasureBean mb : measureList) {
+				for (MeasureBean mb : measureList.getCurrentHealth()) {
 					write(mb.toString());
 				}
 			}
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -276,13 +274,13 @@ public class PeopleClient {
 
 				measureList = people.readPersonMeasure(idperson, newmb.getMeasureType(), newmb.getMid());
 				if (measureList != null) {
-					for (MeasureBean mb : measureList) {
+					for (MeasureBean mb : measureList.getCurrentHealth()) {
 						write(mb.toString());
 					}
 				}
 			}
 
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
