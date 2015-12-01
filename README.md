@@ -17,17 +17,14 @@ Instead the client was implemented to call Heroku server.
 
 
 * **introsde.assignment.soap.bean:** Classes to manage the mapping operation.
-* **introsde.assignment.soap.dao:** Classe DAO "data access object"
-* **introsde.assignment.soap.model:** Classes to represent your domain model.
-* **introsde.assignment.soap.mapping** Classes to manage what and how the domain model is going to be mapped to the presentation layer.
-* **introsde.assignment.soap.endpoint** Standalone HTTP Server
-* **introsde.assignment.soap.ws** implementation ws
+* **introsde.assignment.soap.client** Client SOAP xml
+* **introsde.assignment.soap.ws** implementation call ws
 
 
 
 
 
-**Tasks Server:**
+**Tasks Client:**
 
 
 * **Request #1:** readPersonList() => List | should list all the people in the database (see below Person model to know what data to return here) in your database
@@ -42,24 +39,6 @@ Instead the client was implemented to call Heroku server.
 * **Request #10:** updatePersonMeasure(Long id, Measure m) => Measure | should update the measure identified with {m.mid}, related to the Person identified by {id}
 
 
-* **The minimal model supported by your service should include:**
- ```
-public class Person {
- Long id;
- String firstname;
- String lastname;
- List<Measure> currentHealth; // one for each type of measure
- List<Measure> healthHistory; // all measurements
-}
-
-public class Measure {
- Long mid,
- Date dateRegistered;
- String measureType;
- String measureValue;
- String measureValueType; // string, integer, real
-}
-```
 
 
 **How to run:**
@@ -68,7 +47,7 @@ Running the project requires java and ant.
 
 Ant source file build.xml is annotated. 
 * Main target is: 
-* **start:** To start the local server.
+* **execute.client:** To start task valuation.
 
 
 
