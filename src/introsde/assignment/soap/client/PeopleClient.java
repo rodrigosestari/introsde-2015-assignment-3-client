@@ -10,9 +10,9 @@ import java.util.Random;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import introsde.assignment.soap.bean.MeasureBean;
-import introsde.assignment.soap.bean.PersonBean;
+import introsde.assignment.soap.ws.MeasureBean;
 import introsde.assignment.soap.ws.People;
+import introsde.assignment.soap.ws.PersonBean;
 
 public class PeopleClient {
 	private static FileWriter writer = null;
@@ -40,10 +40,13 @@ public class PeopleClient {
 		// 1st argument service URI, refer to wsdl document above
 		// 2nd argument is service name, refer to wsdl document above
 		QName qname = new QName("http://ws.soap.assignment.introsde/", "PeopleService");
+		
 		Service service = Service.create(url, qname);
 
-		people = service.getPort(People.class);
+		people =  service.getPort(People.class);
 
+		
+		
 		writer = new FileWriter("client-server-xml.log");
 		try {
 			try {
