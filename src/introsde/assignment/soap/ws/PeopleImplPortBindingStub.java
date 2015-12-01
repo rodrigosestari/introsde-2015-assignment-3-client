@@ -25,7 +25,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("createPerson");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "person"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"), introsde.assignment.soap.ws.PersonBean.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "person"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"), introsde.assignment.soap.bean.PersonBean.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
@@ -41,7 +41,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"));
-        oper.setReturnClass(introsde.assignment.soap.ws.PersonBean.class);
+        oper.setReturnClass(introsde.assignment.soap.bean.PersonBean.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "person"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -50,7 +50,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("readPersonList");
         oper.setReturnType(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"));
-        oper.setReturnClass(introsde.assignment.soap.ws.PersonBean[].class);
+        oper.setReturnClass(introsde.assignment.soap.bean.PersonBean[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "people"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -58,7 +58,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("updatePerson");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "person"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"), introsde.assignment.soap.ws.PersonBean.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "person"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean"), introsde.assignment.soap.bean.PersonBean.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
@@ -89,7 +89,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureProfile"));
-        oper.setReturnClass(introsde.assignment.soap.ws.MeasureBean[].class);
+        oper.setReturnClass(introsde.assignment.soap.bean.MeasureBean[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "MeasureProfile"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "currentHealth"));
@@ -118,7 +118,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureProfile"));
-        oper.setReturnClass(introsde.assignment.soap.ws.MeasureBean[].class);
+        oper.setReturnClass(introsde.assignment.soap.bean.MeasureBean[].class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "MeasureProfile"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("", "currentHealth"));
@@ -131,7 +131,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "personId"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), java.lang.Long.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measure"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean"), introsde.assignment.soap.ws.MeasureBean.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measure"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean"), introsde.assignment.soap.bean.MeasureBean.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
@@ -146,7 +146,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "personId"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"), java.lang.Long.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measure"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean"), introsde.assignment.soap.ws.MeasureBean.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measure"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean"), introsde.assignment.soap.bean.MeasureBean.class, false, false);
         param.setOmittable(true);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
@@ -189,14 +189,14 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
             qName = new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean");
             cachedSerQNames.add(qName);
-            cls = introsde.assignment.soap.ws.MeasureBean.class;
+            cls = introsde.assignment.soap.bean.MeasureBean.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureProfile");
             cachedSerQNames.add(qName);
-            cls = introsde.assignment.soap.ws.MeasureBean[].class;
+            cls = introsde.assignment.soap.bean.MeasureBean[].class;
             cachedSerClasses.add(cls);
             qName = new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "measureBean");
             qName2 = new javax.xml.namespace.QName("", "currentHealth");
@@ -205,7 +205,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 
             qName = new javax.xml.namespace.QName("http://ws.soap.assignment.introsde/", "personBean");
             cachedSerQNames.add(qName);
-            cls = introsde.assignment.soap.ws.PersonBean.class;
+            cls = introsde.assignment.soap.bean.PersonBean.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -276,7 +276,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         }
     }
 
-    public java.lang.Long createPerson(introsde.assignment.soap.ws.PersonBean person) throws java.rmi.RemoteException {
+    public java.lang.Long createPerson(introsde.assignment.soap.bean.PersonBean person) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -310,7 +310,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public introsde.assignment.soap.ws.PersonBean readPerson(java.lang.Long personId) throws java.rmi.RemoteException {
+    public introsde.assignment.soap.bean.PersonBean readPerson(java.lang.Long personId) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -334,9 +334,9 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         else {
             extractAttachments(_call);
             try {
-                return (introsde.assignment.soap.ws.PersonBean) _resp;
+                return (introsde.assignment.soap.bean.PersonBean) _resp;
             } catch (java.lang.Exception _exception) {
-                return (introsde.assignment.soap.ws.PersonBean) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.ws.PersonBean.class);
+                return (introsde.assignment.soap.bean.PersonBean) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.bean.PersonBean.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -344,7 +344,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public introsde.assignment.soap.ws.PersonBean[] readPersonList() throws java.rmi.RemoteException {
+    public introsde.assignment.soap.bean.PersonBean[] readPersonList() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -368,9 +368,9 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         else {
             extractAttachments(_call);
             try {
-                return (introsde.assignment.soap.ws.PersonBean[]) _resp;
+                return (introsde.assignment.soap.bean.PersonBean[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (introsde.assignment.soap.ws.PersonBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.ws.PersonBean[].class);
+                return (introsde.assignment.soap.bean.PersonBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.bean.PersonBean[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -378,7 +378,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public java.lang.Long updatePerson(introsde.assignment.soap.ws.PersonBean person) throws java.rmi.RemoteException {
+    public java.lang.Long updatePerson(introsde.assignment.soap.bean.PersonBean person) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -446,7 +446,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public introsde.assignment.soap.ws.MeasureBean[] readPersonHistory(java.lang.Long personId, java.lang.String type) throws java.rmi.RemoteException {
+    public introsde.assignment.soap.bean.MeasureBean[] readPersonHistory(java.lang.Long personId, java.lang.String type) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -470,9 +470,9 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         else {
             extractAttachments(_call);
             try {
-                return (introsde.assignment.soap.ws.MeasureBean[]) _resp;
+                return (introsde.assignment.soap.bean.MeasureBean[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (introsde.assignment.soap.ws.MeasureBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.ws.MeasureBean[].class);
+                return (introsde.assignment.soap.bean.MeasureBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.bean.MeasureBean[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -514,7 +514,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public introsde.assignment.soap.ws.MeasureBean[] readPersonMeasure(java.lang.Long personId, java.lang.String type, java.lang.Long mid) throws java.rmi.RemoteException {
+    public introsde.assignment.soap.bean.MeasureBean[] readPersonMeasure(java.lang.Long personId, java.lang.String type, java.lang.Long mid) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -538,9 +538,9 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
         else {
             extractAttachments(_call);
             try {
-                return (introsde.assignment.soap.ws.MeasureBean[]) _resp;
+                return (introsde.assignment.soap.bean.MeasureBean[]) _resp;
             } catch (java.lang.Exception _exception) {
-                return (introsde.assignment.soap.ws.MeasureBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.ws.MeasureBean[].class);
+                return (introsde.assignment.soap.bean.MeasureBean[]) org.apache.axis.utils.JavaUtils.convert(_resp, introsde.assignment.soap.bean.MeasureBean[].class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -548,7 +548,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public java.lang.Long savePersonMeasure(java.lang.Long personId, introsde.assignment.soap.ws.MeasureBean measure) throws java.rmi.RemoteException {
+    public java.lang.Long savePersonMeasure(java.lang.Long personId, introsde.assignment.soap.bean.MeasureBean measure) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -582,7 +582,7 @@ public class PeopleImplPortBindingStub extends org.apache.axis.client.Stub imple
 }
     }
 
-    public java.lang.Long updatePersonMeasure(java.lang.Long personId, introsde.assignment.soap.ws.MeasureBean measure) throws java.rmi.RemoteException {
+    public java.lang.Long updatePersonMeasure(java.lang.Long personId, introsde.assignment.soap.bean.MeasureBean measure) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }

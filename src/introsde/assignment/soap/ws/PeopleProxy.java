@@ -44,25 +44,25 @@ public class PeopleProxy implements introsde.assignment.soap.ws.People {
     return people;
   }
   
-  public java.lang.Long createPerson(introsde.assignment.soap.ws.PersonBean person) throws java.rmi.RemoteException{
+  public java.lang.Long createPerson(introsde.assignment.soap.bean.PersonBean person) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.createPerson(person);
   }
   
-  public introsde.assignment.soap.ws.PersonBean readPerson(java.lang.Long personId) throws java.rmi.RemoteException{
+  public introsde.assignment.soap.bean.PersonBean readPerson(java.lang.Long personId) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.readPerson(personId);
   }
   
-  public introsde.assignment.soap.ws.PersonBean[] readPersonList() throws java.rmi.RemoteException{
+  public introsde.assignment.soap.bean.PersonBean[] readPersonList() throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.readPersonList();
   }
   
-  public java.lang.Long updatePerson(introsde.assignment.soap.ws.PersonBean person) throws java.rmi.RemoteException{
+  public java.lang.Long updatePerson(introsde.assignment.soap.bean.PersonBean person) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.updatePerson(person);
@@ -74,7 +74,7 @@ public class PeopleProxy implements introsde.assignment.soap.ws.People {
     return people.deletePerson(personId);
   }
   
-  public introsde.assignment.soap.ws.MeasureBean[] readPersonHistory(java.lang.Long personId, java.lang.String type) throws java.rmi.RemoteException{
+  public introsde.assignment.soap.bean.MeasureBean[] readPersonHistory(java.lang.Long personId, java.lang.String type) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.readPersonHistory(personId, type);
@@ -86,19 +86,19 @@ public class PeopleProxy implements introsde.assignment.soap.ws.People {
     return people.readMeasureTypes();
   }
   
-  public introsde.assignment.soap.ws.MeasureBean[] readPersonMeasure(java.lang.Long personId, java.lang.String type, java.lang.Long mid) throws java.rmi.RemoteException{
+  public introsde.assignment.soap.bean.MeasureBean[] readPersonMeasure(java.lang.Long personId, java.lang.String type, java.lang.Long mid) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.readPersonMeasure(personId, type, mid);
   }
   
-  public java.lang.Long savePersonMeasure(java.lang.Long personId, introsde.assignment.soap.ws.MeasureBean measure) throws java.rmi.RemoteException{
+  public java.lang.Long savePersonMeasure(java.lang.Long personId, introsde.assignment.soap.bean.MeasureBean measure) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.savePersonMeasure(personId, measure);
   }
   
-  public java.lang.Long updatePersonMeasure(java.lang.Long personId, introsde.assignment.soap.ws.MeasureBean measure) throws java.rmi.RemoteException{
+  public java.lang.Long updatePersonMeasure(java.lang.Long personId, introsde.assignment.soap.bean.MeasureBean measure) throws java.rmi.RemoteException{
     if (people == null)
       _initPeopleProxy();
     return people.updatePersonMeasure(personId, measure);
