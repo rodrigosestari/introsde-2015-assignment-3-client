@@ -32,7 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "measureBean", propOrder = {
+@XmlType(name = "measure", propOrder = {
     "mid",
     "dateRegistered",
     "measureType",

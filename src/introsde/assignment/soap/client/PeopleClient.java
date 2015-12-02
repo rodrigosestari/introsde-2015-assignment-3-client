@@ -3,9 +3,11 @@ package introsde.assignment.soap.client;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
@@ -14,6 +16,8 @@ import introsde.assignment.soap.ws.MeasureBean;
 import introsde.assignment.soap.ws.MeasureProfile;
 import introsde.assignment.soap.ws.People;
 import introsde.assignment.soap.ws.PersonBean;
+import introsde.assignment.soap.ws.UpdatePerson;
+
 
 public class PeopleClient {
 	private static FileWriter writer = null;
@@ -37,11 +41,11 @@ public class PeopleClient {
 	}
 
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("http://rodrigo-sestari-soap-server.herokuapp.com/ws/people?wsdl");
+		URL url = new URL("http://10.218.223.157:6902/ws/people?wsdl");
 		// 1st argument service URI, refer to wsdl document above
 		// 2nd argument is service name, refer to wsdl document above
 		QName qname = new QName("http://ws.soap.assignment.introsde/", "PeopleService");
-
+		/// introsde.assignment.soap.ws.People
 		Service service = Service.create(url, qname);
 
 		people = service.getPort(People.class);
@@ -72,7 +76,7 @@ public class PeopleClient {
 				request5();
 				write("------------- \n");
 
-				write("Request 6 : createPerson");
+				write("Request 6 : readPersonHistory");
 				request6();
 				write("------------- \n");
 
@@ -105,7 +109,7 @@ public class PeopleClient {
 
 	public static void request1() {
 		try {
-			peopleList = people.readPersonList();
+			peopleList = people.getPeople();
 			if (peopleList != null) {
 				for (PersonBean pb : peopleList) {
 					write(pb.toString());
@@ -120,8 +124,8 @@ public class PeopleClient {
 	public static void request2() {
 		try {
 			if ((peopleList != null) && (peopleList.size() > 0)) {
-				Long id = peopleList.get(0).getId();
-				personB = people.readPerson(id);
+				idperson = peopleList.get(0).getId();
+				personB = people.readPerson(idperson);
 				write(personB.toString());
 			}
 		} catch (Exception e) {
@@ -132,13 +136,17 @@ public class PeopleClient {
 
 	public static void request3() {
 		try {
-			if (personB != null) {
+			if ((peopleList != null) && (peopleList.size() > 0)) {
+				PersonBean pUpdate = peopleList.get(peopleList.size() - 1);
 
-				personB.setFirstname("change at" + new Date());
+				write("id: " + pUpdate.getId());
+				write("before:"+pUpdate.getFirstname()); 
+				String uuid = UUID.randomUUID().toString();
 
-				Long id = people.updatePerson(personB);
-				personB = people.readPerson(id);
-				write(personB.toString());
+				pUpdate.setFirstname("change" + uuid);
+				Long id = people.updatePerson(pUpdate);
+				pUpdate = people.readPerson(id);				
+				write("after:"+pUpdate.getFirstname());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -150,17 +158,21 @@ public class PeopleClient {
 		try {
 
 			newPersonB = new PersonBean();
-			newPersonB.setFirstname("Rodrigo");
-			newPersonB.setLastname("create: " + new Date());
+			String uuid = UUID.randomUUID().toString();
+			newPersonB.setFirstname("create " + uuid);
+			newPersonB.setLastname("last: " + new Date());
 			newMeasureB = new MeasureBean();
 			newMeasureB.setMeasureType("height");
-			newMeasureB.setMeasureValue("99");
+			Random nr = new Random();
+			newMeasureB.setMeasureValue(""+ nr.nextInt(100));
 			newMeasureB.setMeasureValueType("integer");
-			newPersonB.getCurrentHealth().add(newMeasureB);
-			Long id = people.createPerson(newPersonB);
+			List<MeasureBean> ml = new ArrayList<MeasureBean>();
+			ml.add(newMeasureB);
+			newPersonB.setCurrentHealth(ml);
+			Long id = people.addPerson(newPersonB);
 
-			personB = people.readPerson(id);
-			write(personB.toString());
+			newPersonB = people.readPerson(id);
+			write(newPersonB.toString());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -171,14 +183,14 @@ public class PeopleClient {
 	public static void request5() {
 		try {
 
-			if (personB != null) {
-				Long id = personB.getId();
+			if (newPersonB != null) {
+				Long id = newPersonB.getId();
 				people.deletePerson(id);
-				personB = people.readPerson(id);
-				if (personB == null) {
-					write("don't found");
+				newPersonB = people.readPerson(id);
+				if (newPersonB == null) {
+					write("OK");
 				} else {
-					write(personB.toString());
+					write(newPersonB.toString());
 				}
 			}
 
@@ -190,16 +202,13 @@ public class PeopleClient {
 
 	public static void request6() {
 		try {
-			if ((peopleList != null) && (peopleList.size() > 0)) {
-				idperson = peopleList.get(0).getId();
-
+			if (idperson != null) {
 				measureList = people.readPersonHistory(idperson, "weight");
-				if (measureList != null) {
+				if ((measureList != null) && (measureList.getCurrentHealth() != null)) {
 					for (MeasureBean mb : measureList.getCurrentHealth()) {
 						write(mb.toString());
 					}
 				}
-				write(personB.toString());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -243,15 +252,17 @@ public class PeopleClient {
 
 	public static void request9() {
 		try {
-			MeasureBean newmb = new MeasureBean();
+			newmb = new MeasureBean();
 			newmb.setMeasureType("newType");
-			newmb.setMeasureValue("666");
+			Random nr = new Random();
+			newmb.setMeasureValue("" + nr.nextInt(100));
 			newmb.setMeasureValueType("integer");
 
 			Long mid = people.savePersonMeasure(idperson, newmb);
+			newmb.setMid(mid);
 			measureList = people.readPersonMeasure(idperson, "newType", mid);
-			if (measureList != null) {
-				for (MeasureBean mb : measureList.getCurrentHealth()) {
+			if ((measureList != null) && (measureList.getCurrentHealth() != null)) {
+				for (MeasureBean mb : measureList.getCurrentHealth()) {					
 					write(mb.toString());
 				}
 			}
@@ -268,7 +279,7 @@ public class PeopleClient {
 			if (newmb != null) {
 				Random rd = new Random();
 
-				Integer newvalue = rd.nextInt();
+				Integer newvalue = rd.nextInt(100);
 				newmb.setMeasureValue(newvalue.toString());
 				people.updatePersonMeasure(idperson, newmb);
 

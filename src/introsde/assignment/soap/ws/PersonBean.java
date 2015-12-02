@@ -31,12 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "personBean", propOrder = {
-    "id",
-    "firstname",
-    "lastname",
-    "currentHealth"
-})
+@XmlType(name = "person")
 public class PersonBean {
 
     protected Long id;
