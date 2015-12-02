@@ -28,7 +28,9 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "healthProfile-history")
+@XmlType(name = "measureProfile", propOrder = {
+    "currentHealth"
+})
 public class MeasureProfile {
 
     protected List<MeasureBean> currentHealth;
@@ -61,5 +63,11 @@ public class MeasureProfile {
         }
         return this.currentHealth;
     }
+
+	@Override
+	public String toString() {
+		return "MeasureProfile [currentHealth=" + currentHealth + "]";
+	}
+    
 
 }

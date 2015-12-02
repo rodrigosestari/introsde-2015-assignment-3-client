@@ -1,6 +1,9 @@
 
 package introsde.assignment.soap.ws;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -32,7 +35,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "measure", propOrder = {
+@XmlType(name = "measureBean", propOrder = {
     "mid",
     "dateRegistered",
     "measureType",
@@ -167,5 +170,18 @@ public class MeasureBean {
     public void setMeasureValueType(String value) {
         this.measureValueType = value;
     }
+
+	@Override
+	public String toString() {
+		String newname = null;
+		try {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			newname = dateFormat.format(dateRegistered);	
+		} catch (Exception e) {
+		}
+		
+		return "MeasureBean [mid=" + mid + ", dateRegistered=" + newname + ", measureType=" + measureType
+				+ ", measureValue=" + measureValue + ", measureValueType=" + measureValueType + "]";
+	}
 
 }

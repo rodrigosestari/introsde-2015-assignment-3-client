@@ -3,7 +3,6 @@ package introsde.assignment.soap.client;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -16,8 +15,6 @@ import introsde.assignment.soap.ws.MeasureBean;
 import introsde.assignment.soap.ws.MeasureProfile;
 import introsde.assignment.soap.ws.People;
 import introsde.assignment.soap.ws.PersonBean;
-import introsde.assignment.soap.ws.UpdatePerson;
-
 
 public class PeopleClient {
 	private static FileWriter writer = null;
@@ -41,11 +38,10 @@ public class PeopleClient {
 	}
 
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("http://10.218.223.157:6902/ws/people?wsdl");
+		URL url = new URL("http://rodrigo-sestari-soap-server.herokuapp.com/ws/people?wsdl");
 		// 1st argument service URI, refer to wsdl document above
 		// 2nd argument is service name, refer to wsdl document above
 		QName qname = new QName("http://ws.soap.assignment.introsde/", "PeopleService");
-		/// introsde.assignment.soap.ws.People
 		Service service = Service.create(url, qname);
 
 		people = service.getPort(People.class);
@@ -140,13 +136,13 @@ public class PeopleClient {
 				PersonBean pUpdate = peopleList.get(peopleList.size() - 1);
 
 				write("id: " + pUpdate.getId());
-				write("before:"+pUpdate.getFirstname()); 
+				write("before:" + pUpdate.getFirstname());
 				String uuid = UUID.randomUUID().toString();
 
 				pUpdate.setFirstname("change" + uuid);
 				Long id = people.updatePerson(pUpdate);
-				pUpdate = people.readPerson(id);				
-				write("after:"+pUpdate.getFirstname());
+				pUpdate = people.readPerson(id);
+				write("after:" + pUpdate.getFirstname());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -164,11 +160,9 @@ public class PeopleClient {
 			newMeasureB = new MeasureBean();
 			newMeasureB.setMeasureType("height");
 			Random nr = new Random();
-			newMeasureB.setMeasureValue(""+ nr.nextInt(100));
+			newMeasureB.setMeasureValue("" + nr.nextInt(100));
 			newMeasureB.setMeasureValueType("integer");
-			List<MeasureBean> ml = new ArrayList<MeasureBean>();
-			ml.add(newMeasureB);
-			newPersonB.setCurrentHealth(ml);
+			newPersonB.getCurrentHealth().add(newMeasureB);
 			Long id = people.addPerson(newPersonB);
 
 			newPersonB = people.readPerson(id);
@@ -262,7 +256,7 @@ public class PeopleClient {
 			newmb.setMid(mid);
 			measureList = people.readPersonMeasure(idperson, "newType", mid);
 			if ((measureList != null) && (measureList.getCurrentHealth() != null)) {
-				for (MeasureBean mb : measureList.getCurrentHealth()) {					
+				for (MeasureBean mb : measureList.getCurrentHealth()) {
 					write(mb.toString());
 				}
 			}

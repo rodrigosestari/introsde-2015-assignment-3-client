@@ -1,0 +1,49 @@
+URL BASE: http://rodrigo-sestari-soap-server.herokuapp.com/ws/people?wsdl 
+------------- 
+ 
+Request 1 : readPersonList 
+PersonBean [id=1, firstname=rodrigo, lastname=sestari, currentHealth=[MeasureBean [mid=3, dateRegistered=null, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=2, dateRegistered=null, measureType=weight, measureValue=888, measureValueType=int], MeasureBean [mid=558, dateRegistered=null, measureType=newType, measureValue=76, measureValueType=integer]]] 
+PersonBean [id=3507, firstname=change082a06c5-8de3-4e71-a75f-b8d37a04f705, lastname=last: Wed Dec 02 19:34:25 CET 2015, currentHealth=null] 
+------------- 
+ 
+Request 2 : readPerson 
+PersonBean [id=1, firstname=rodrigo, lastname=sestari, currentHealth=[MeasureBean [mid=3, dateRegistered=null, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=2, dateRegistered=null, measureType=weight, measureValue=888, measureValueType=int], MeasureBean [mid=558, dateRegistered=null, measureType=newType, measureValue=76, measureValueType=integer]]] 
+------------- 
+ 
+Request 3 : updatePerson 
+id: 3507 
+before:change082a06c5-8de3-4e71-a75f-b8d37a04f705 
+after:changef6c31ffc-6ef9-4267-bb56-d23c3b67e2ed 
+------------- 
+ 
+Request 4 : createPerson 
+PersonBean [id=3808, firstname=create 8d55087e-deab-4ad6-b787-2e714d312cf0, lastname=last: Wed Dec 02 22:03:30 CET 2015, currentHealth=[MeasureBean [mid=559, dateRegistered=null, measureType=height, measureValue=72, measureValueType=integer]]] 
+------------- 
+ 
+Request 5 : deletePerson 
+OK 
+------------- 
+ 
+Request 6 : readPersonHistory 
+MeasureBean [mid=1, dateRegistered=null, measureType=weight, measureValue=83, measureValueType=integer] 
+MeasureBean [mid=2, dateRegistered=null, measureType=weight, measureValue=888, measureValueType=int] 
+------------- 
+ 
+Request 7 : readMeasureTypes 
+height 
+newType 
+weight 
+------------- 
+ 
+Request 8 : readPersonMeasure 
+MeasureBean [mid=1, dateRegistered=null, measureType=weight, measureValue=83, measureValueType=integer] 
+------------- 
+ 
+Request 9 : savePersonMeasure 
+MeasureBean [mid=560, dateRegistered=null, measureType=newType, measureValue=15, measureValueType=integer] 
+------------- 
+ 
+Request 10 : savePersonMeasure 
+MeasureBean [mid=560, dateRegistered=null, measureType=newType, measureValue=95, measureValueType=integer] 
+------------- 
+ 

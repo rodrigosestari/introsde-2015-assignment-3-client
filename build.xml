@@ -15,7 +15,7 @@
        # The target "download-ivy" and "install-ivy" will download the ivy jar and place it in the "ivy" folder
        # 
 -->
-    <project name="assignment3client" default="install" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+    <project name="assignment3client" default="execute.client" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
         <!-- PART 1: Ivy properties, download, installation and configuration -->
         <property name="ivy.install.version" value="2.4.0-rc1" />
         <property name="ivy.jar.dir" value="${basedir}/ivy" />
@@ -46,6 +46,7 @@
                 <fileset dir="${ivy.jar.dir}" includes="*.jar" />
             </path>
             <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+        	
         </target>
         <!-- PART 2: General properties definitions -->
         <property name="build.dir" value="build" />
@@ -57,6 +58,8 @@
 	          target: resolve downloads the dependencies to your lib folder              
 	         ================================= -->
         <target name="resolve" depends="install-ivy" description="--> retrieve dependencies with ivy">
+        	  
+        	
             <ivy:retrieve pattern="${lib.dir}/[type]s-[artifact]-[revision].[ext]" />
         </target>
         <!-- paths where ivy libraries will be downloaded, use them as classpathref in your compilation and running tasks  -->
@@ -104,7 +107,7 @@
             </copy>
         </target>
       
-        <target name="execute.client">
+        <target name="execute.client"  depends="install">
             <echo message="ant introsde.assignment.soap.client in ${build.dir}" />
             <java classname="introsde.assignment.soap.client.PeopleClient" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
