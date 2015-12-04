@@ -108,7 +108,7 @@ public class PeopleClient {
 			peopleList = people.getPeople();
 			if (peopleList != null) {
 				for (PersonBean pb : peopleList) {
-					write(pb.toString());
+					write("result: " +pb.toString());
 				}
 			}
 		} catch (Exception e) {
@@ -122,7 +122,8 @@ public class PeopleClient {
 			if ((peopleList != null) && (peopleList.size() > 0)) {
 				idperson = peopleList.get(0).getId();
 				personB = people.readPerson(idperson);
-				write(personB.toString());
+				write("readPerson: " + idperson);
+				write("result: " + personB.toString());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -134,15 +135,14 @@ public class PeopleClient {
 		try {
 			if ((peopleList != null) && (peopleList.size() > 0)) {
 				PersonBean pUpdate = peopleList.get(peopleList.size() - 1);
-
 				write("id: " + pUpdate.getId());
-				write("before:" + pUpdate.getFirstname());
+				write("before: " + pUpdate.getFirstname());
 				String uuid = UUID.randomUUID().toString();
 
-				pUpdate.setFirstname("change" + uuid);
+				pUpdate.setFirstname("updatePerson: " + uuid);
 				Long id = people.updatePerson(pUpdate);
 				pUpdate = people.readPerson(id);
-				write("after:" + pUpdate.getFirstname());
+				write("result: " + pUpdate.getFirstname());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -164,9 +164,9 @@ public class PeopleClient {
 			newMeasureB.setMeasureValueType("integer");
 			newPersonB.getCurrentHealth().add(newMeasureB);
 			Long id = people.addPerson(newPersonB);
-
+			write("addPerson: " + newPersonB.toString());
 			newPersonB = people.readPerson(id);
-			write(newPersonB.toString());
+			write("result:" + newPersonB.toString());
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -181,10 +181,11 @@ public class PeopleClient {
 				Long id = newPersonB.getId();
 				people.deletePerson(id);
 				newPersonB = people.readPerson(id);
+				write("readPerson: " + id);
 				if (newPersonB == null) {
 					write("OK");
 				} else {
-					write(newPersonB.toString());
+					write("result:" + newPersonB.toString());
 				}
 			}
 
@@ -198,9 +199,10 @@ public class PeopleClient {
 		try {
 			if (idperson != null) {
 				measureList = people.readPersonHistory(idperson, "weight");
+				write("readPersonHistory:" + idperson + " weight");
 				if ((measureList != null) && (measureList.getCurrentHealth() != null)) {
 					for (MeasureBean mb : measureList.getCurrentHealth()) {
-						write(mb.toString());
+						write("result: " +mb.toString());
 					}
 				}
 			}
@@ -215,7 +217,7 @@ public class PeopleClient {
 			measureType = people.readMeasureTypes();
 			if (measureType != null) {
 				for (String mt : measureType) {
-					write(mt);
+					write("result: " +mt);
 				}
 			}
 
@@ -232,9 +234,10 @@ public class PeopleClient {
 				type = measureList.getCurrentHealth().get(0).getMeasureType();
 
 				measureList = people.readPersonMeasure(idperson, type, mid);
+				write("readPersonMeasure: " +idperson +" "+ type + " "+ mid);
 				if (measureList != null) {
 					for (MeasureBean mb : measureList.getCurrentHealth()) {
-						write(mb.toString());
+						write("result "+ mb.toString());
 					}
 				}
 			}
@@ -255,9 +258,10 @@ public class PeopleClient {
 			Long mid = people.savePersonMeasure(idperson, newmb);
 			newmb.setMid(mid);
 			measureList = people.readPersonMeasure(idperson, "newType", mid);
+			write("readPersonMeasure "+idperson + " "+"newType" + " " +mid);
 			if ((measureList != null) && (measureList.getCurrentHealth() != null)) {
 				for (MeasureBean mb : measureList.getCurrentHealth()) {
-					write(mb.toString());
+					write("result" + mb.toString());
 				}
 			}
 
@@ -278,9 +282,10 @@ public class PeopleClient {
 				people.updatePersonMeasure(idperson, newmb);
 
 				measureList = people.readPersonMeasure(idperson, newmb.getMeasureType(), newmb.getMid());
+				write("readPersonMeasure: " + idperson + " " + newmb.getMeasureType() + " "+newmb.getMid());
 				if (measureList != null) {
 					for (MeasureBean mb : measureList.getCurrentHealth()) {
-						write(mb.toString());
+						write("result" + mb.toString());
 					}
 				}
 			}
