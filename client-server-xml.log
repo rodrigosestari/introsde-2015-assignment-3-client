@@ -2,49 +2,56 @@ URL BASE: http://rodrigo-sestari-soap-server.herokuapp.com/ws/people?wsdl
 ------------- 
  
 Request 1 : readPersonList 
-PersonBean [id=1, firstname=Jon, lastname=Walker, currentHealth=[MeasureBean [mid=3, dateRegistered=2015-11-29, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer], MeasureBean [mid=22, dateRegistered=null, measureType=newType, measureValue=65, measureValueType=integer]]] 
-PersonBean [id=2, firstname=Sonia, lastname=Leo, currentHealth=[MeasureBean [mid=14, dateRegistered=2015-12-1, measureType=height, measureValue=67, measureValueType=integer]]] 
-PersonBean [id=3, firstname=Matteo, lastname=Butz, currentHealth=[MeasureBean [mid=5, dateRegistered=2015-12-1, measureType=height, measureValue=42, measureValueType=integer]]] 
-PersonBean [id=4, firstname=change05cffaef-1302-481e-8258-69757aa81def, lastname=Willian, currentHealth=[MeasureBean [mid=8, dateRegistered=2015-12-1, measureType=height, measureValue=22, measureValueType=integer], MeasureBean [mid=7, dateRegistered=2015-12-1, measureType=newType, measureValue=80, measureValueType=integer], MeasureBean [mid=2, dateRegistered=2015-11-29, measureType=weight, measureValue=888, measureValueType=integer]]] 
+result: PersonBean [id=1, firstname=Jon, lastname=Walker, currentHealth=[MeasureBean [mid=15, dateRegistered=2015-12-1, measureType=newType, measureValue=76, measureValueType=integer], MeasureBean [mid=3, dateRegistered=2015-11-29, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer]]] 
+result: PersonBean [id=2, firstname=Sonia, lastname=Leo, currentHealth=[MeasureBean [mid=14, dateRegistered=2015-12-1, measureType=height, measureValue=67, measureValueType=integer]]] 
+result: PersonBean [id=3, firstname=Matteo, lastname=Butz, currentHealth=[MeasureBean [mid=5, dateRegistered=2015-12-1, measureType=height, measureValue=42, measureValueType=integer]]] 
+result: PersonBean [id=4, firstname=Lucca, lastname=Willian, currentHealth=[MeasureBean [mid=8, dateRegistered=2015-12-1, measureType=height, measureValue=22, measureValueType=integer], MeasureBean [mid=7, dateRegistered=2015-12-1, measureType=newType, measureValue=80, measureValueType=integer], MeasureBean [mid=2, dateRegistered=2015-11-29, measureType=weight, measureValue=888, measureValueType=integer]]] 
 ------------- 
  
 Request 2 : readPerson 
-PersonBean [id=1, firstname=Jon, lastname=Walker, currentHealth=[MeasureBean [mid=3, dateRegistered=2015-11-29, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer], MeasureBean [mid=22, dateRegistered=null, measureType=newType, measureValue=65, measureValueType=integer]]] 
+readPerson: 1 
+result: PersonBean [id=1, firstname=Jon, lastname=Walker, currentHealth=[MeasureBean [mid=15, dateRegistered=2015-12-1, measureType=newType, measureValue=76, measureValueType=integer], MeasureBean [mid=3, dateRegistered=2015-11-29, measureType=height, measureValue=75, measureValueType=integer], MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer]]] 
 ------------- 
  
 Request 3 : updatePerson 
 id: 4 
-before:change05cffaef-1302-481e-8258-69757aa81def 
-after:change548ea1d2-bc72-48c7-8fcb-9b2d27774d19 
+before: Lucca 
+result: updatePerson: 1194b589-5da4-47e0-9a2a-7c3f86041853 
 ------------- 
  
 Request 4 : createPerson 
-PersonBean [id=12, firstname=create 37414b91-6fd9-4ecf-a757-21614dbd515f, lastname=last: Fri Dec 04 20:51:12 CET 2015, currentHealth=[MeasureBean [mid=23, dateRegistered=null, measureType=height, measureValue=93, measureValueType=integer]]] 
+addPerson: PersonBean [id=null, firstname=create 67146708-60e7-4f34-9788-853b34e41b87, lastname=last: Fri Dec 04 21:08:46 CET 2015, currentHealth=[MeasureBean [mid=null, dateRegistered=null, measureType=height, measureValue=89, measureValueType=integer]]] 
+result:PersonBean [id=11, firstname=create 67146708-60e7-4f34-9788-853b34e41b87, lastname=last: Fri Dec 04 21:08:46 CET 2015, currentHealth=[MeasureBean [mid=21, dateRegistered=null, measureType=height, measureValue=89, measureValueType=integer]]] 
 ------------- 
  
 Request 5 : deletePerson 
+readPerson: 11 
 OK 
 ------------- 
  
 Request 6 : readPersonHistory 
-MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer] 
+readPersonHistory:1 weight 
+result: MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer] 
 ------------- 
  
 Request 7 : readMeasureTypes 
-height 
-newType 
-weight 
+result: height 
+result: newType 
+result: weight 
 ------------- 
  
 Request 8 : readPersonMeasure 
-MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer] 
+readPersonMeasure: 1 weight 1 
+result MeasureBean [mid=1, dateRegistered=2015-11-29, measureType=weight, measureValue=83, measureValueType=integer] 
 ------------- 
  
 Request 9 : savePersonMeasure 
-MeasureBean [mid=24, dateRegistered=2015-12-4, measureType=newType, measureValue=89, measureValueType=integer] 
+readPersonMeasure 1 newType 22 
+resultMeasureBean [mid=22, dateRegistered=2015-12-4, measureType=newType, measureValue=30, measureValueType=integer] 
 ------------- 
  
 Request 10 : savePersonMeasure 
-MeasureBean [mid=24, dateRegistered=null, measureType=newType, measureValue=51, measureValueType=integer] 
+readPersonMeasure: 1 newType 22 
+resultMeasureBean [mid=22, dateRegistered=2015-12-4, measureType=newType, measureValue=99, measureValueType=integer] 
 ------------- 
  
